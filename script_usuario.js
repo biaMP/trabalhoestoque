@@ -1,5 +1,7 @@
 // Inicializa os produtos no LocalStorage caso não existam
 let produtos = JSON.parse(localStorage.getItem("produtos"));
+const modalAdd = new bootstrap.Modal(document.getElementById('exampleModal'));
+
 if (!produtos) {
     localStorage.setItem("produtos", JSON.stringify([]));
     produtos = [];
@@ -37,16 +39,10 @@ function editarUsuario(id) {
     nomeeditar.value = produto.nome
     quantidadeeditar.value = produto.quantidade
     descricaoeditar.value = produto.descricao
+}
 
-
-
-
-
-
-
-
-
-
+function abrirModalAdd() {
+    modalAdd.show()
 }
 
 // Função de cadastro de produto
@@ -76,8 +72,7 @@ document.getElementById("cadastro").addEventListener("submit", function (e) {
     renderizarTabela();
 
     // Fecha o modal após salvar
-    const modal = new bootstrap.Modal(document.getElementById('exampleModal'));
-    modal.hide();
+    modalAdd.hide();
 
     // Limpa os campos do formulário
     document.getElementById("cadastro").reset();
